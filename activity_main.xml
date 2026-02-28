@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,83 +32,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- TIEMPO -->
-            <TextView android:text="⏱️ CORTE PRECISO (Segundos)" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="⏱️ CORTE (Segundos)" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <EditText android:id="@+id/etStartTime" android:hint="Inicio (0)" android:inputType="numberDecimal" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
+                <EditText android:id="@+id/etStartTime" android:hint="Inicio" android:inputType="numberDecimal" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
                 <EditText android:id="@+id/etEndTime" android:hint="Fin" android:inputType="numberDecimal" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
             </LinearLayout>
 
-            <!-- ESCALADO -->
-            <TextView android:text="📐 ESCALADO (Resolución)" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="📐 RESOLUCIÓN" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <EditText android:id="@+id/etScaleWidth" android:hint="Ancho (ej: 1920)" android:inputType="number" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
-                <EditText android:id="@+id/etScaleHeight" android:hint="Alto (ej: 1080)" android:inputType="number" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
+                <EditText android:id="@+id/etScaleWidth" android:hint="Ancho" android:inputType="number" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
+                <EditText android:id="@+id/etScaleHeight" android:hint="Alto" android:inputType="number" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
             </LinearLayout>
 
-            <!-- VELOCIDAD -->
-            <TextView android:text="🐢🐇 VELOCIDAD (1.0 = Normal)" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <EditText                android:id="@+id/etSpeedFactor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ej: 0.5 (Lento), 2.0 (Rápido)"
-                android:inputType="numberDecimal"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#333333"/>
+            <TextView android:text="🐢🐇 VELOCIDAD" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <EditText android:id="@+id/etSpeedFactor" android:hint="1.0 (Normal), 0.5 (Lento), 2.0 (Rápido)" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
 
-            <!-- INTERPOLACIÓN -->
-            <CheckBox
-                android:id="@+id/cbInterpolate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✨ Interpolación IA (Suavizar a FPS)"
-                android:textColor="#03DAC6"
-                android:layout_marginTop="8dp"/>
-            <EditText
-                android:id="@+id/etTargetFps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="FPS Objetivo (ej: 60)"
-                android:inputType="number"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#333333"
-                android:enabled="false"/>
-            
-            <TextView android:text="Compresión (Calidad vs Tamaño)" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <SeekBar
-                android:id="@+id/sbCompression"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="51"
-                android:progress="23"
-                android:progressTint="#03DAC6"/>
-            <TextView android:id="@+id/tvCompressionVal" android:text="Nivel: 23 (Alta Calidad)" android:textColor="#03DAC6" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <CheckBox android:id="@+id/cbInterpolate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="✨ Interpolación FPS" android:textColor="#03DAC6" android:layout_marginTop="8dp"/>
+            <EditText android:id="@+id/etTargetFps" android:hint="FPS (ej: 60)" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:backgroundTint="#333333"/>
+
+            <TextView android:text="🗜️ COMPRESIÓN" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <SeekBar android:id="@+id/sbCompression" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="51" android:progress="23" android:progressTint="#03DAC6"/>
+            <TextView android:id="@+id/tvCompressionVal" android:text="CRF: 23" android:textColor="#03DAC6" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </ScrollView>
 
-    <TextView android:id="@+id/tvStatus" android:text="Listo para editar" android:textColor="#AAAAAA" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintBottom_toTopOf="@id/progressBar" app:layout_constraintStart_toStartOf="parent"/>
+    <TextView android:id="@+id/tvStatus" android:text="Listo" android:textColor="#AAAAAA" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintBottom_toTopOf="@id/progressBar" app:layout_constraintStart_toStartOf="parent"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/btnProcess"
-        app:layout_constraintStart_toStartOf="parent"        app:layout_constraintEnd_toEndOf="parent" />
+    <ProgressBar android:id="@+id/progressBar" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:visibility="gone" android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@id/btnProcess" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btnProcess"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="🚀 PROCESAR Y GUARDAR"
-        android:backgroundTint="#03DAC6"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <Button android:id="@+id/btnProcess" android:layout_width="0dp" android:layout_height="wrap_content" android:text="🚀 PROCESAR" android:backgroundTint="#03DAC6" android:textColor="#000000" android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
