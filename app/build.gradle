@@ -21,9 +21,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {
-            minifyEnabled false
-        }
+        debug { minifyEnabled false }
     }
 
     compileOptions {
@@ -31,8 +29,15 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '17'
+    kotlinOptions { jvmTarget = '17' }
+}
+
+repositories {
+    google()
+    mavenCentral()
+    maven { 
+        url 'https://arthenica.com/maven'
+        content { includeGroup 'com.arthenica' }
     }
 }
 
@@ -41,7 +46,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    
-    // ✅ ffmpeg-kit en Maven Central - Versión estable verificada
-    implementation 'com.arthenica:ffmpeg-kit-full:5.1.LTS'
+    implementation 'com.arthenica:ffmpeg-kit-full:6.2.LTS'
 }
