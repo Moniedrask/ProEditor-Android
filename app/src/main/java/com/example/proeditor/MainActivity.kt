@@ -86,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         sb.append("-i \"$input\"")
         val filters = mutableListOf<String>()
 
-        // Tiempo
         val start = binding.etStartTime.text.toString().ifEmpty { "0" }
         val end = binding.etEndTime.text.toString()
         if (end.isNotEmpty()) {
@@ -94,19 +93,16 @@ class MainActivity : AppCompatActivity() {
             if (duration > 0) filters.add("trim=start=$start:duration=$duration,setpts=PTS-STARTPTS")
         }
 
-        // Escala
         val w = binding.etScaleWidth.text.toString()
-        val h = binding.etScaleHeight.text.toString()        if (w.isNotEmpty() || h.isNotEmpty()) {
-            filters.add("scale=${if (w.isEmpty()) "-2" else w}:${if (h.isEmpty()) "-2" else h}")
-        }
+        val h = binding.etScaleHeight.text.toString()
+        if (w.isNotEmpty() || h.isNotEmpty()) {
+            filters.add("scale=${if (w.isEmpty()) "-2" else w}:${if (h.isEmpty()) "-2" else h}")        }
 
-        // Velocidad
         val speed = binding.etSpeedFactor.text.toString().ifEmpty { "1.0" }.toDouble()
         if (speed != 1.0) {
             filters.add("setpts=${1.0 / speed}*PTS")
         }
 
-        // Interpolación
         if (binding.cbInterpolate.isChecked) {
             val fps = binding.etTargetFps.text.toString().ifEmpty { "60" }
             filters.add("minterpolate=fps=$fps:mi_mode=mci:mc_mode=aobmc:vsbmc=1")
@@ -114,13 +110,11 @@ class MainActivity : AppCompatActivity() {
 
         if (filters.isNotEmpty()) sb.append(" -vf \"${filters.joinToString(",")}\"")
 
-        // Audio
         if (speed != 1.0) {
             val safeSpeed = speed.coerceIn(0.5, 2.0)
             sb.append(" -af \"atempo=$safeSpeed\"")
         }
 
-        // Compresión
         val crf = binding.sbCompression.progress
         sb.append(" -c:v libx264 -preset medium -crf $crf -c:a aac -b:a 192k -y \"$output\"")
 
