@@ -36,19 +36,12 @@ android {
     }
 }
 
-// ✅ Repositorios a nivel de módulo (necesario para ffmpeg-kit)
-repositories {
-    google()
-    mavenCentral()
-    maven { url 'https://arthenica.com/maven' }
-}
+// ✅ NO agregues repositories aquí - ya están en settings.gradle
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    
-    // ✅ Versión LTS estable de ffmpeg-kit
     implementation 'com.arthenica:ffmpeg-kit-full:6.0.LTS'
 }
