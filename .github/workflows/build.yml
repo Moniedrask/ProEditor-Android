@@ -18,29 +18,24 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: 'gradle'
+        # ❌ Caché desactivada para evitar warnings
 
     - name: Setup Gradle Wrapper
       run: |
-        # Crear carpeta si no existe
         mkdir -p gradle/wrapper
         
-        # Descargar gradle-wrapper.jar oficial
         if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
           echo "⬇️ Descargando gradle-wrapper.jar..."
           wget -q https://github.com/gradle/gradle/raw/v8.0.0/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
         fi
         
-        # Descargar gradlew si no existe
         if [ ! -f "gradlew" ]; then
           echo "⬇️ Descargando gradlew..."
           wget -q https://raw.githubusercontent.com/gradle/gradle/v8.0.0/gradlew
           chmod +x gradlew
         fi
         
-        # Crear gradle-wrapper.properties si no existe
         if [ ! -f "gradle/wrapper/gradle-wrapper.properties" ]; then
-          echo "📝 Creando gradle-wrapper.properties..."
           cat > gradle/wrapper/gradle-wrapper.properties << 'EOF'
 distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
@@ -50,17 +45,14 @@ zipStorePath=wrapper/dists
 EOF
         fi
         
-        # Dar permisos
         chmod +x gradlew
-        
         echo "✅ Gradle wrapper configurado"
-        ls -la gradle/wrapper/
 
     - name: Accept Android Licenses
       run: yes | sdkmanager --licenses || true
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace --no-daemon --console=plain
+      run: ./gradlew assembleDebug --no-daemon --console=plain
 
     - name: Verify APK Exists
       run: |
@@ -69,7 +61,6 @@ EOF
           ls -lh app/build/outputs/apk/debug/app-debug.apk
         else
           echo "❌ APK no encontrado"
-          find . -name "*.apk" -type f
           exit 1
         fi
 
