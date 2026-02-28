@@ -28,7 +28,8 @@ jobs:
       run: yes | sdkmanager --licenses || true
 
     - name: Build Debug APK
-      run: gradle assembleDebug --no-daemon --console=plain
+      # ✅ --refresh-dependencies fuerza a Gradle a buscar en Maven Central
+      run: gradle assembleDebug --no-daemon --console=plain --refresh-dependencies
 
     - name: Verify APK Exists
       run: |
