@@ -1,3 +1,4 @@
+// build.gradle (ROOT) - Solo configuración de plugins
 buildscript {
     repositories {
         google()
@@ -9,13 +10,8 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
+// ✅ NO agregues 'allprojects { repositories {...} }' aquí
+// Los repositorios ya están definidos en settings.gradle
 
 task clean(type: Delete) {
     delete rootProject.buildDir
