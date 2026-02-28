@@ -18,7 +18,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        # ❌ Caché desactivada para evitar warnings
 
     - name: Setup Gradle Wrapper
       run: |
