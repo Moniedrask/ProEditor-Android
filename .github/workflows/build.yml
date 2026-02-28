@@ -20,41 +20,20 @@ jobs:
         distribution: 'temurin'
         cache: 'gradle'
 
-    - name: Create Gradle Wrapper if Missing
-      run: |
-        if [ ! -f "./gradlew" ]; then
-          echo "⚠️ gradlew no encontrado, creando..."
-          mkdir -p gradle/wrapper
-          cat > gradle/wrapper/gradle-wrapper.properties << 'EOF'
-          
-distributionPath=wrapper/dists
-distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-bin.zip
-zipStoreBase=GRADLE_USER_HOME
-zipStorePath=wrapper/dists
-EOF
-          wget -q https://raw.githubusercontent.com/gradle/gradle/master/gradlew
-          chmod +x gradlew
-          echo "✅ gradlew creado"
-        else
-          echo "✅ gradlew ya existe"
-          chmod +x gradlew
-        fi
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.0'
+        cache-read-only: false
+
+    - name: Grant Execute Permission
+      run: chmod +x ./gradlew
 
     - name: Accept Android Licenses
       run: yes | sdkmanager --licenses || true
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace --no-daemon --console=plain
-
-    - name: Verify APK Exists
-      run: |
-        if [ -f "app/build/outputs/apk/debug/app-debug.apk" ]; then
-          echo "✅ APK generado exitosamente"
-          ls -lh app/build/outputs/apk/debug/app-debug.apk
-        else
-          echo "❌ APK no encontrado"
-          exit 1
-        fi
+      run: ./gradlew assembleDebug --stacktrace --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
@@ -62,3 +41,4 @@ EOF
         name: pro-editor-apk
         path: app/build/outputs/apk/debug/app-debug.apk
         retention-days: 7
+        compression-level: 6
